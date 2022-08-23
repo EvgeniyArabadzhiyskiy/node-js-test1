@@ -1,9 +1,15 @@
-const express = require('express');
+const express = require("express");
 
-const router = express.Router()
+const { validation, ctrlWrapper } = require("../middlewares");
+const contactSchema = require("../schemas/contactsSchema");
+const contactCtrl = require("../controllers");
 
-router.get('/', (req, res) => {
-    res.json('helle Djon')
-})
+const router = express.Router();
 
-module.exports = router
+router.get("/", ctrlWrapper(contactCtrl.getAll));
+router.get("/:id", ctrlWrapper(contactCtrl.getById));
+router.post("/", validation(contactSchema), ctrlWrapper(contactCtrl.addContact));
+router.put("/:id", validation(contactSchema), ctrlWrapper(contactCtrl.changeContact));
+router.delete("/:id", ctrlWrapper(contactCtrl.deleteContact));
+
+module.exports = { contactsRoutes: router };
