@@ -5,12 +5,13 @@ const {getAll} = require('../../controllers');
 
 const router = express.Router()
 
-router.get("/", async () => {
+router.get("/", async (req) => {
+    console.log("router.get ~ req", req);
     console.log('hello');
 //   return await Contact.find({});
 
 })
-router.get("/",ctrlWrapper())
-router.post("/",ctrlWrapper())
+// router.get("/",ctrlWrapper())
+// router.post("/",ctrlWrapper())
 
 module.exports = router
