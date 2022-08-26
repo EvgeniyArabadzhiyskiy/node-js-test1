@@ -5,7 +5,7 @@ const {getAll} = require('../../controllers');
 
 const router = express.Router()
 
-router.get("/",async () => {
+router.get("/", async () => {
     console.log('hello');
 //   return await Contact.find({});
 
