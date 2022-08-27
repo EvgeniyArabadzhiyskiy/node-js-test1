@@ -9,6 +9,15 @@ const { PORT, MONGO_DB } = process.env;
 app.use(express.json());
 app.use("/api/contacts", routerContact);
 
+app.use((req,res)=> {
+  res.status(404).json({message: 'Not Found'})
+})
+
+app.use((err, req,res ,next)=> {
+  res.status(500).json({message: `Server Error with`})
+})
+
+
 const start = async () => {
   try {
     await mongoose.connect(MONGO_DB);
