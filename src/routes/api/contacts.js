@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.get("/", ctrlWrapper(getAll));
 router.get("/:id", ctrlWrapper(getContactById));
-router.post("/", validation(joiSchema), ctrlWrapper(addcontact));
+router.post("/", validation(joiSchema), addcontact);
 router.put("/:id", ctrlWrapper(updeteContact));
 router.delete("/:id", ctrlWrapper(deleteContact));
 
