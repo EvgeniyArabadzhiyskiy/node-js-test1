@@ -24,7 +24,57 @@
     <button class="increment" type="button">+1</button>
     <button class="decrement" type="button">-1</button>
 
+    <form class="form-avatar" enctype="multipart/form-data">
+      <input type="file" name="avatar" />
+      <button type="submit">Submit</button>
+    </form>
+
     <script>
+      const formAvatar = document.querySelector(".form-avatar");
+      formAvatar.addEventListener("submit", onSubmitAvatar);
+
+      let formData = {};
+
+      function onSubmitAvatar(e) {
+        e.preventDefault();
+        const form = e.currentTarget;
+        const inputFile = form.elements.avatar;
+        const selectedFile = inputFile.files[0];
+
+        // console.log(selectedFile, 'selectedFile');
+
+        const formData = new FormData();
+
+        formData.append("avatar", selectedFile);
+
+        
+
+        // formData.forEach((val, key) => {
+        //   console.log("formData.forEach ~ val", val);
+        // });
+
+        ddd(selectedFile)
+      }
+
+      async function ddd(file) {
+
+        const options = {
+          method: "POST",
+          headers: {
+            'Content-Type': "multipart/form-data"
+          },
+          body: {
+            data: file,
+          },
+        };
+        
+        const res = await fetch("http://localhost:8085/api/files/upload", options );
+        console.log("ddd ~ res", res);
+        // const data = await res.json();
+      }
+
+     
+
       // const listGallery = document.querySelector(".list");
       // const item = document.querySelector(".list_item");
 
